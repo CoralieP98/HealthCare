@@ -1,0 +1,34 @@
+services:
+
+  configserver:
+    image: coralieperez/configserver
+    ports:
+      - "8071:8071"
+    networks:
+      - healthcare-networks
+    mem_limit: 700m
+
+
+
+  eurekaserver:
+    image: coralieperez/eurekaserver
+    ports:
+      - "8070:8070"
+    networks:
+      - healthcare-networks
+    mem_limit: 700m
+    depends_on:
+      - configserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+
+networks:
+  healthcare-networks:
