@@ -2,8 +2,18 @@ services:
 
   configserver:
     image: coralieperez/configserver
+    container_name: configserver-ms
     ports:
       - "8071:8071"
+    healthcheck:
+      test: ""
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
     networks:
       - healthcare-networks
     mem_limit: 700m
@@ -12,6 +22,7 @@ services:
 
   eurekaserver:
     image: coralieperez/eurekaserver
+    container_name: eurekaserver-ms
     ports:
       - "8070:8070"
     networks:
@@ -19,6 +30,15 @@ services:
     mem_limit: 700m
     depends_on:
       - configserver
+    healthcheck:
+      test: ""
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
     deploy:
       restart_policy:
         condition: on-failure
