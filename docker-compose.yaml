@@ -18,6 +18,37 @@ services:
       - healthcare-networks
     mem_limit: 700m
 
+  web-app:
+    image: coralieperez/web-app
+    container_name: web-app-ms
+    ports:
+      - "8080:8080"
+    networks:
+      - healthcare-networks
+    mem_limit: 700m
+    depends_on:
+      - eurekaserver
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    #    extends:
+    #      file: common-config.yml
+    #      service: microservice-base-config
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 40s
+        max_attempts: 3
+        window: 120s
+
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
+
 
 
   eurekaserver:
@@ -31,7 +62,7 @@ services:
     depends_on:
       - configserver
     healthcheck:
-      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
       timeout: 5s
       retries: 10

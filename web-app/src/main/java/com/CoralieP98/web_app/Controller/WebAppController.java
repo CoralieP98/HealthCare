@@ -15,14 +15,34 @@ public class WebAppController {
         return "redirect:/home";
     }
 
-    @PostMapping("/signUp")
-    public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form){
-        userService.registration(form);
+    @GetMapping("/signIn")
+    public ModelAndView signIn(){
+        return new ModelAndView("signIn");
+    }
+
+    @GetMapping("/home")
+    public ModelAndView home(){
+        return new ModelAndView("homePage");
+    }
+
+//    @PostMapping("/signUp")
+//    public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form){
+//        userService.registration(form);
+//        return new ModelAndView("signIn");
+//    }
+//
+//    @GetMapping("/signUp")
+//    public ModelAndView showRegisterForm(){
+//        return new ModelAndView("signUp", "signUpForm",new SignUpForm());
+//    }
+
+        @PostMapping("/signUp")
+    public ModelAndView processRequest(){
         return new ModelAndView("signIn");
     }
 
     @GetMapping("/signUp")
     public ModelAndView showRegisterForm(){
-        return new ModelAndView("signUp", "signUpForm",new SignUpForm());
+        return new ModelAndView("signUp");
     }
 }
