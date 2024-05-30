@@ -81,5 +81,56 @@ services:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
 
+  mysql:
+    image: mysql
+    container_name: mysql_healthcare
+    environment:
+      MYSQL_DATABASE: healthcare
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: courgette123
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    ports:
+      - 3307:3306
+    networks:
+      - healthcare-networks
+
+
+  patient:
+    image: coralieperez/patient
+    container_name: patient-ms
+    ports:
+      - "9000:9000"
+    networks:
+      - healthcare-networks
+    mem_limit: 700m
+    depends_on:
+      - mysql
+      - eurekaserver
+    healthcheck:
+      test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    #    extends:
+    #      file: common-config.yml
+    #      service: microservice-base-config
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 40s
+        max_attempts: 3
+        window: 120s
+
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/healthcare"
+
+
 networks:
   healthcare-networks:
