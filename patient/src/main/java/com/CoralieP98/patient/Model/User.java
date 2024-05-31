@@ -6,13 +6,11 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Patient {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private String userName;
 
     @Column(unique = true)
     private String email;
@@ -20,12 +18,12 @@ public class Patient {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    public Patient() {
+    public User() {
     }
 
-    public Patient(int id, String userName, String email, String password) {
+    public User(int id, String email, String password) {
         this.id = id;
-        this.userName = userName;
+
         this.email = email;
         this.password = password;
     }
@@ -38,13 +36,6 @@ public class Patient {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getEmail() {
         return email;

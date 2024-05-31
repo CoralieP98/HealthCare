@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @FeignClient("patient")
 public interface PatientFeignClient {
 
-    @RequestMapping(method = RequestMethod.POST, value = "signUp", consumes = "application/json")
-    ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form);
+//    @RequestMapping(method = RequestMethod.POST, value = "signUp", consumes = "application/json")
+//    ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form);
 
 }
