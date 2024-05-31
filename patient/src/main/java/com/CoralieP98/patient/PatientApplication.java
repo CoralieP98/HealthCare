@@ -12,9 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableFeignClients
 @RefreshScope
-@ComponentScans({@ComponentScan("com.CoralieP98.patient.controller")})
-@EnableJpaRepositories("com.CoralieP98.patient.repository")
-@EntityScan("com.CoralieP98.patient.model")
+@ComponentScans({@ComponentScan("com.CoralieP98.patient.Controller")})
+@EnableJpaRepositories("com.CoralieP98.patient.Repository")
+@EntityScan("com.CoralieP98.patient.Model")
 public class PatientApplication {
 
 	public static void main(String[] args) {

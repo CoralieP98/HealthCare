@@ -13,11 +13,7 @@
 <div class="container">
     <div class="screen">
         <div class="screen__content">
-            <form class="login" th:action="@{/signUp}" th:object="${signUpForm}" method="POST">
-                <div class="login__field">
-                    <i class="login__icon fas fa-user"></i>
-                    <input type="text" class="login__input" th:field="*{userName}" placeholder="User Name">
-                </div>
+            <form class="login" th:action="@{/signUp}" th:object="${userForm}" method="POST">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
                     <input type="email" class="login__input" th:field="*{email}" placeholder="Email" required autofocus>

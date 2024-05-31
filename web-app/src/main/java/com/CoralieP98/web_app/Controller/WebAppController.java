@@ -1,6 +1,7 @@
 package com.CoralieP98.web_app.Controller;
 
-import com.CoralieP98.Service.Client.PatientFeignClient;
+import com.CoralieP98.web_app.Model.User;
+import com.CoralieP98.web_app.Service.Client.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class WebAppController {
 
     @Autowired
-    PatientFeignClient patientFeignClient;
+    UserFeignClient userFeignClient;
 
     @GetMapping("/")
     public String home(Model model){
@@ -25,6 +26,14 @@ public class WebAppController {
         return new ModelAndView("homePage");
     }
 
+    @PostMapping("/signUp")
+    public ModelAndView userSignUp(@ModelAttribute("userForm") User userForm){
+        return userFeignClient.processRequest(userForm);
+    }
 
+    @GetMapping("/signUp")
+    public ModelAndView showUserForm(){
+        return userFeignClient.showUserForm();
+    }
 
 }
