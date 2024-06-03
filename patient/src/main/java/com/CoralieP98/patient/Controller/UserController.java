@@ -23,20 +23,20 @@ public class UserController {
 
     }
 
-    @PostMapping("/signUp")
-    public ModelAndView processRequest(@ModelAttribute("userForm")User userForm){
-        userService.registration(userForm);
-        return new ModelAndView("signIn");
-    }
-
-    @GetMapping("/signUp")
-    public ModelAndView showUserRegisterForm(){
-        return new ModelAndView("signUp", "userForm",new User());
-    }
-
-    @GetMapping("/profil")
-    public ModelAndView userProfil(Model model){
-        model.addAttribute("user",customService.actualUser());
-        return new ModelAndView("userProfil");
-    }
+//    @PostMapping("/signUp")
+//    public ModelAndView processRequest(@ModelAttribute("userForm")User userForm){
+//        userService.registration(userForm);
+//        return new ModelAndView("signIn");
+//    }
+//
+//    @GetMapping("/signUp")
+//    public ModelAndView showUserRegisterForm(){
+//        return new ModelAndView("signUp", "userForm",new User());
+//    }
+//
+//    @GetMapping("/profil")
+//    public ModelAndView userProfil(Model model){
+//        model.addAttribute("user",customService.actualUser());
+//        return new ModelAndView("userProfil");
+//    }
 }

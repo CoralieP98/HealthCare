@@ -2,7 +2,7 @@ package com.CoralieP98.web_app.Controller;
 
 import com.CoralieP98.web_app.Model.User;
 import com.CoralieP98.web_app.Service.Client.UserFeignClient;
-import com.CoralieP98.web_app.Service.impl.UserServiceImpl;
+
 import lombok.RequiredArgsConstructor;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequiredArgsConstructor
 public class WebAppController {
-
-    private final UserServiceImpl userService;
-
-    @Value("${build.version}")
-    private String buildVersion;
-
-    @Autowired
-    private Environment environment;
 
 
     @Autowired
@@ -43,12 +35,19 @@ public class WebAppController {
 
     @PostMapping("/signUp")
     public ModelAndView userSignUp(@ModelAttribute("userForm") User userForm){
-        return userFeignClient.processRequest(userForm);
+        userFeignClient.createUser(userForm);
+        return new ModelAndView("signIn");
     }
 
     @GetMapping("/signUp")
     public ModelAndView showUserForm(){
-        return userFeignClient.showUserForm();
+        return new ModelAndView("signUp", "userForm",new User());
+    }
+
+    @GetMapping("/profil")
+    public ModelAndView userProfil(Model model){
+        model.addAttribute("user",customService.actualUser());
+        return new ModelAndView("userProfil");
     }
 
     @GetMapping("/logIn")

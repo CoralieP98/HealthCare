@@ -10,10 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @FeignClient("patient")
 public interface UserFeignClient {
 
-    @RequestMapping(method = RequestMethod.POST, value = "signUp", consumes = "application/json")
-    ModelAndView processRequest(@ModelAttribute("userForm") User userForm);
 
-    @RequestMapping(method = RequestMethod.GET, value = "signUp", consumes = "application/json")
-    ModelAndView showUserForm();
 
 }
