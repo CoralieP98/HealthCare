@@ -29,8 +29,10 @@ public class UserController {
         return userService.createUser(userForm);
     }
 
-    @PostMapping("/findUserByUserName")
-    public
+    @PostMapping("/findUserByUsername")
+    public User getUserByUsername(@RequestParam String email){
+        return userService.findByUserName(email);
+    }
 
 
 
