@@ -34,7 +34,7 @@ public class UserService {
         }else return userRepository.findUserByEmail(userForm.getEmail()).get();
     }
 
-    @Override
+
     public User findByUserName(String email){
         return userRepository.findUserByEmail(email).get();
     }

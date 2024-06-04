@@ -21,7 +21,7 @@ public class CustomService {
     public User actualUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String actualUserName = authentication.getName();
-        User user = userRepository.findUserByEmail(actualUserName);
+        User user = userRepository.findUserByEmail(actualUserName).get();
         return user;
     }
 }

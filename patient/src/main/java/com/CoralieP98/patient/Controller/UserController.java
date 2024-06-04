@@ -3,14 +3,16 @@ package com.CoralieP98.patient.Controller;
 import com.CoralieP98.patient.Model.User;
 import com.CoralieP98.patient.Service.CustomService;
 import com.CoralieP98.patient.Service.UserService;
+import jakarta.persistence.TableGenerator;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @RestController
+@RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
+
 public class UserController {
 
     private final CustomService customService;
@@ -20,8 +22,17 @@ public class UserController {
     public UserController(CustomService customService, UserService userService) {
         this.customService = customService;
         this.userService = userService;
-
     }
+
+    @PostMapping("/createUser")
+    public User createUser(@RequestBody User userForm){
+        return userService.createUser(userForm);
+    }
+
+    @PostMapping("/findUserByUserName")
+    public
+
+
 
 //    @PostMapping("/signUp")
 //    public ModelAndView processRequest(@ModelAttribute("userForm")User userForm){
