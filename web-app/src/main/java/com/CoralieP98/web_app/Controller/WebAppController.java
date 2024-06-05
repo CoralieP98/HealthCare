@@ -46,11 +46,13 @@ public class WebAppController {
 
     @GetMapping("/profil")
     public ModelAndView userProfil(Model model){
-        model.addAttribute("user",customService.actualUser());
+        model.addAttribute("user",userFeignClient.actualUser());
         return new ModelAndView("userProfil");
     }
 
     @GetMapping("/logIn")
     public String getLogInPage(){return "signIn";}
+
+
 
 }

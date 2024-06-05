@@ -34,6 +34,11 @@ public class UserController {
         return userService.findByUserName(email);
     }
 
+    @GetMapping("/findActualUser")
+    public User actualUser(){
+        return customService.actualUser();
+    }
+
 
 
 //    @PostMapping("/signUp")
