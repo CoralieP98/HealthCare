@@ -50,7 +50,7 @@ public class WebAppController {
         return new ModelAndView("userProfil");
     }
 
-    @GetMapping("/logIn")
+    @GetMapping("/login")
     public String getLogInPage(){return "signIn";}
 
 

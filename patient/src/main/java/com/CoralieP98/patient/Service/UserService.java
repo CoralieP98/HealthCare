@@ -18,12 +18,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUsr(User userForm){
-        User user = new User();
-        user.setEmail(userForm.getEmail());
-        user.setPassword(passwordEncoder.encode(userForm.getPassword()));
-        return userRepository.save(user);
-    }
 
     public User createUser(User userForm){
         if (userRepository.findUserByEmail(userForm.getEmail()).isEmpty()){

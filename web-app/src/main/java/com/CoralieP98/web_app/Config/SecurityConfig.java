@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -28,11 +28,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/style.css", "/images/**", "/logIn", "/signUp").permitAll()
+                        .requestMatchers("/style.css", "/images/**", "/login", "/signUp").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .loginPage("/logIn")
+                        .loginPage("/login")
                         .permitAll().usernameParameter("email").defaultSuccessUrl("/",true)
                 )
                 .logout(logout -> logout
@@ -44,13 +44,4 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService(){return new CustomUserDetailsService();}
-//
-//    @Bean
-//    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception{
-//        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-//        authenticationManagerBuilder.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
-//        return authenticationManagerBuilder.build();
-//    }
 }
