@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public interface UserFeignClient {
 
     @PostMapping(value = "/api/createUser", consumes = "application/json")
-    public ResponseEntity<User> createUser(User user);
+    public ResponseEntity<User> createUser(User userForm);
 
     @PostMapping(value = "/api/findUserByUsername", consumes = "application/json")
     public ResponseEntity<User> getUserByUserName (@RequestParam String email);

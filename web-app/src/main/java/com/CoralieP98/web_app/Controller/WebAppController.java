@@ -18,9 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class WebAppController {
 
+    private final UserFeignClient userFeignClient;
 
-    @Autowired
-    UserFeignClient userFeignClient;
+//    @Autowired
+//    UserFeignClient userFeignClient;
 
     @GetMapping("/")
     public String home(Model model){
@@ -34,7 +35,7 @@ public class WebAppController {
     }
 
     @PostMapping("/signUp")
-    public ModelAndView userSignUp(@ModelAttribute("userForm") User userForm){
+    public ModelAndView userSignUp(@ModelAttribute User userForm){
         userFeignClient.createUser(userForm);
         return new ModelAndView("signIn");
     }
@@ -44,10 +45,10 @@ public class WebAppController {
         return new ModelAndView("signUp", "userForm",new User());
     }
 
-    @GetMapping("/profil")
-    public ModelAndView userProfil(Model model){
+    @GetMapping("/profilHome")
+    public ModelAndView userProfilHome(Model model){
         model.addAttribute("user",userFeignClient.actualUser());
-        return new ModelAndView("userProfil");
+        return new ModelAndView("homePage");
     }
 
     @GetMapping("/login")
