@@ -1,15 +1,16 @@
 package com.CoralieP98.patient.Service;
 
+import com.CoralieP98.patient.Model.Patient;
 import com.CoralieP98.patient.Model.User;
 import com.CoralieP98.patient.Repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Scanner;
 
 @Service
 public class UserService {
-
-
 
     private final UserRepository userRepository;
 
@@ -33,6 +34,7 @@ public class UserService {
     public User findByUserName(String email){
         return userRepository.findUserByEmail(email).get();
     }
+
 
 
 }

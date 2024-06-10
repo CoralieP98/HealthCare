@@ -3,6 +3,7 @@ package com.CoralieP98.web_app.Controller;
 import com.CoralieP98.web_app.Model.User;
 import com.CoralieP98.web_app.Service.Client.UserFeignClient;
 
+import com.CoralieP98.web_app.Service.CustomUserDetailsService;
 import com.CoralieP98.web_app.Service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.cfg.Environment;
@@ -22,6 +23,8 @@ public class WebAppController {
     private final UserFeignClient userFeignClient;
 
     private final UserServiceImpl userService;
+
+    private final CustomUserDetailsService userDetailsService;
 
 
     @GetMapping("/")
@@ -47,9 +50,9 @@ public class WebAppController {
     }
 
     @GetMapping("/profilHome")
-    public ModelAndView userProfilHome(Model model){
-        model.addAttribute("user",userFeignClient.actualUser());
-        return new ModelAndView("homePage");
+    public String userProfilHome(String email){
+        userDetailsService.loadUserByUsername(email);
+        return "redirect:/home";
     }
 
     @GetMapping("/login")

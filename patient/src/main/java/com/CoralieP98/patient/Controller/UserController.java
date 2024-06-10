@@ -1,12 +1,13 @@
 package com.CoralieP98.patient.Controller;
 
+import com.CoralieP98.patient.Model.Patient;
 import com.CoralieP98.patient.Model.User;
+import com.CoralieP98.patient.Service.PatientService;
 import com.CoralieP98.patient.Service.UserService;
-import jakarta.persistence.TableGenerator;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @RestController
@@ -14,8 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final PatientService patientService;
+
+    public UserController(UserService userService, PatientService patientService) {
         this.userService = userService;
+        this.patientService = patientService;
     }
 
     @PostMapping("/createUser")
@@ -27,6 +31,28 @@ public class UserController {
     @PostMapping("/findUserByUsername")
     public User getUserByUsername(@RequestParam String email){
         return userService.findByUserName(email);
+    }
+
+    @GetMapping("getAll")
+    public List<Patient> getAllPatients(){
+       return patientService.getAllPatients();
+    }
+
+    @PostMapping("createPatient")
+    public String createPatient(Patient patient){
+        patientService.createPatient(patient);
+        return "patient created";
+    }
+
+    @PostMapping("findPatientById")
+    public Patient findPatientById(@RequestParam Long id){
+        return patientService.findPatientById(id);
+    }
+
+    @PutMapping("updatePatient")
+    public String updatePatient(@RequestParam Long id,Patient patient){
+        return patientService.updatePatient(id,patient);
+
     }
 
 
