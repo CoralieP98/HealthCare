@@ -9,21 +9,22 @@ import java.util.Scanner;
 @Service
 public class UserService {
 
-    private final PasswordEncoder passwordEncoder;
+
 
     private final UserRepository userRepository;
 
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
-        this.passwordEncoder = passwordEncoder;
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+    public void createUser(User userForm){
+        userRepository.save(userForm);
+    }
 
-
-    public User createUser(User userForm){
+    public User createUserOld(User userForm){
         if (userRepository.findUserByEmail(userForm.getEmail()).isEmpty()){
             User user = new User();
             user.setEmail(userForm.getEmail());
-            user.setPassword(passwordEncoder.encode(userForm.getPassword()));
+            user.setPassword(userForm.getPassword());
             return userRepository.save(user);
         }else return userRepository.findUserByEmail(userForm.getEmail()).get();
     }

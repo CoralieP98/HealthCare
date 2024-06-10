@@ -3,6 +3,7 @@ package com.CoralieP98.web_app.Controller;
 import com.CoralieP98.web_app.Model.User;
 import com.CoralieP98.web_app.Service.Client.UserFeignClient;
 
+import com.CoralieP98.web_app.Service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class WebAppController {
 
     private final UserFeignClient userFeignClient;
 
-//    @Autowired
-//    UserFeignClient userFeignClient;
+    private final UserServiceImpl userService;
+
 
     @GetMapping("/")
     public String home(Model model){
@@ -35,8 +36,8 @@ public class WebAppController {
     }
 
     @PostMapping("/signUp")
-    public ModelAndView userSignUp(@ModelAttribute User userForm){
-        userFeignClient.createUser(userForm);
+    public ModelAndView userSignUp(@ModelAttribute("userForm") User userForm){
+        userService.register(userForm);
         return new ModelAndView("signIn");
     }
 

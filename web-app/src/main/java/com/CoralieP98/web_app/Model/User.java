@@ -4,18 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-@Entity
+
 @Data
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
 
-    @Column(unique = true)
+
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
+
     private String password;
 
     public User() {
