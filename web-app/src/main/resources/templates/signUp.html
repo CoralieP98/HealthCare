@@ -16,7 +16,7 @@
             <form class="login" th:action="@{/signUp}" th:object="${userForm}" method="POST">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="email" class="login__input" th:field="*{email}" placeholder="Email" required autofocus>
+                    <input type="text" class="login__input" th:field="*{email}" placeholder="Email" required autofocus>
                     <p class="text-danger" style="display:none" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                 </div>
                 <div class="login__field">
@@ -30,7 +30,7 @@
                 </button>
             </form>
             <div class="social-login">
-                <h3><a href="/login">log in</a></h3>
+                <h3><a href="/profilHome">log in</a></h3>
             </div>
         </div>
         <div class="screen__background">

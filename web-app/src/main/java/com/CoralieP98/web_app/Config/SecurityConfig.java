@@ -1,5 +1,6 @@
 package com.CoralieP98.web_app.Config;
 
+import com.CoralieP98.web_app.Service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class SecurityConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .permitAll().usernameParameter("email").defaultSuccessUrl("/",true)
+                        .permitAll().usernameParameter("email").defaultSuccessUrl("/home",true)
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
@@ -42,6 +43,18 @@ public class SecurityConfig {
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new CustomUserDetailsService();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception{
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+        return authenticationManagerBuilder.build();
     }
 
 }

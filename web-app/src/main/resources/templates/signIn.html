@@ -12,15 +12,15 @@
 <div class="container">
     <div class="screen">
         <div class="screen__content">
-            <form class="login" th:action="@{/signIn}" method="post">
+            <form class="login" th:action="@{/login}" method="post">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="email" class="login__input" placeholder="Email" required autofocus>
+                    <input type="text" name="email" class="login__input" placeholder="Email" required autofocus>
                     <p class="text-danger" style="display:none"></p>
                 </div>
                 <div class="login__field">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="login__input" placeholder="Password" required autofocus>
+                    <input type="password" name="password" class="login__input" placeholder="Password" required autofocus>
                     <p class="text-danger" style="display:none"></p>
                 </div>
                 <button type="submit" class="button login__submit">
