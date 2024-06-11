@@ -171,13 +171,10 @@ body{
 .header {
     margin: 0;
     padding: 20px;
-    min-height: 100vh;
 
     font-family: Raleway, sans-serif;
 
 }
-
-
 
 .header, .nav, .menu {
     display: flex;

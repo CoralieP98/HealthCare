@@ -38,6 +38,11 @@ public class WebAppController {
         return new ModelAndView("homePage");
     }
 
+    @GetMapping("/patientsPage")
+    public ModelAndView patients(){
+        return new ModelAndView("patients");
+    }
+
     @PostMapping("/signUp")
     public ModelAndView userSignUp(@ModelAttribute("userForm") User userForm){
         userService.register(userForm);
