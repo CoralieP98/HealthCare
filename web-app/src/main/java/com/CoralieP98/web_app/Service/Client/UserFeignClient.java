@@ -28,10 +28,10 @@ public interface UserFeignClient {
     public ResponseEntity<Patient> findPatientById(@RequestParam Long id);
 
     @PutMapping(value = "/api/updatePatient",consumes = "application/json")
-    public String updatePatient(@RequestParam Long id,Patient patient);
+    public String updatePatient(@RequestParam Long id,Patient patient);//meh
 
     @DeleteMapping(value = "/api/deletePatient",consumes = "application/json")
-    public void deletePatient(@RequestParam Long id);
+    public void deletePatient(@PathVariable("id")Patient patient);
 
 
 

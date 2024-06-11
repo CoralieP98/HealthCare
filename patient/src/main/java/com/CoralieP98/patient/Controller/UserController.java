@@ -49,10 +49,14 @@ public class UserController {
         return patientService.findPatientById(id);
     }
 
-    @PutMapping("updatePatient")
-    public String updatePatient(@RequestParam Long id,Patient patient){
-        return patientService.updatePatient(id,patient);
+//    @DeleteMapping("deletePatient")
+//    public void deletePatient(@RequestParam Long id){
+//        patientService.deletePatient(id);
+//    }
 
+    @DeleteMapping("deletePatient")
+    public void deletePatient(@PathVariable("id")Patient patient){
+        patientService.deletePatient(patient.getId());
     }
 
 
