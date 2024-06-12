@@ -60,13 +60,4 @@ public class WebAppController {
         return "redirect:/home";
     }
 
-//    @GetMapping("/home")
-//    public ModelAndView homePage(){
-//        return new ModelAndView("homePage");
-//    }
-//    @GetMapping("/login")
-//    public String getLogInPage(){return "signIn";}
-
-
-
 }

@@ -22,6 +22,8 @@ body{
 	min-height: 100vh;
 }
 
+
+
 .screen {		
 	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
 	position: relative;	
@@ -29,6 +31,7 @@ body{
 	width: 360px;	
 	box-shadow: 0px 0px 24px #5C5696;
 }
+
 
 .screen__content {
 	z-index: 1;
@@ -88,6 +91,8 @@ body{
 	border-radius: 60px;
 }
 
+
+
 .login {
 	width: 320px;
 	padding: 30px;
@@ -98,6 +103,8 @@ body{
 	padding: 20px 0px;	
 	position: relative;	
 }
+
+
 
 .login__icon {
 	position: absolute;
@@ -259,4 +266,183 @@ body{
 
 .nav input:checked ~ span:nth-child(3) {
     transform: translateY(0) rotate(45deg);
+}
+
+
+/* ### List Patient ###  */
+
+
+.Patients{
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+.Patients-title{
+	font-weight: 700;
+	font-size: 2.5em;
+	padding: 15px 0 40px 0;
+}
+
+.Patients-tablo-div{
+	overflow-x: auto;
+}
+
+table{
+	border-spacing: 0;
+	border-radius: 1em;
+	border: 3px solid;
+	border-color: #4C489D;
+	overflow: hidden;
+}
+
+th, td{
+	border: 1px solid;
+	border-collapse: collapse;
+	border-color: #4C489D;
+	padding: 15px 20px;
+}
+
+th{
+	background-color: #4C489D;
+	color: white;
+}
+
+.link-edit{
+	font-weight: 600;
+}
+
+.link-delete{
+	font-weight: 600;
+	color: red;
+}
+
+.link-notes{
+	text-decoration:  none;
+	color: #7875B5;
+	font-weight: 600;
+}
+
+.AddNew{
+	text-decoration: none;
+	color: #4C489D;
+	margin: 2em 0;
+	padding: 10px 15px;
+	border: 2px solid  #4C489D;
+	border-radius: 2.5em;
+}
+
+/* ### Add patient Form ###  */
+
+.Vew-Add-patient{
+	background: linear-gradient(270deg, #5D54A4, #6A679E);
+
+}
+
+.Add-patient-title{
+	color: white;
+	padding: 1em;
+}
+
+.Add-patient{
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+
+}
+
+.Add-patient-form-input{
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 30px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+}
+
+.container--AddPatient{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 200vh;
+}
+
+.screen-AddPatient {		
+	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
+	position: relative;	
+	height: 800px;
+	width: 360px;	
+	box-shadow: 0px 0px 24px #5C5696;
+}
+
+.screen__content-AddPatient {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
+}
+
+.login-AddPatient {
+	width: auto;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center
+
+}
+
+.login__field-AddPatient {
+	position: relative;	
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+	
+
+}
+
+.Add-patient-form-label{
+	font-weight: 600;
+	width: 100px;
+}
+
+.Add-patient-form-input{
+	width: 200px;
+}
+
+.Add-patient-form-cancel{
+	color: white;
+	text-decoration: none;
+}
+
+.social-login-AddPatient {	
+	
+    padding:50px 0;
+    text-align: center;
+}
+
+.login__submit-AddPatient {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 5px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #4C489D;
+	box-shadow: 0px 2px 2px #5C5696;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.login__submit-AddPatient:active,
+.login__submit-AddPatient:focus,
+.login__submit-AddPatient:hover {
+	border-color: #6A679E;
+	outline: none;
 }

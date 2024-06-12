@@ -3,41 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Patients</title>
-    <link rel="stylesheet" href="../style.css">
+    <!-- <link rel="stylesheet" href="../style.css"> -->
+   <link rel="stylesheet" href="../static/style.css">
     <script src="https://kit.fontawesome.com/84b2e4f32b.js" crossorigin="anonymous"></script>
 
 
 </head>
-<body>
+<body class="Vew-Patients">
     <header th:replace="~{fragments/navBar}"></header>
 
-    <div class="row"><h2>Patient List</h2></div>
-    <div class="row">
-        <a href="/user/add" class="btn btn-primary btn-sm">Add New</a>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Full Name</th>
-                <th>User Name</th>
-                <th>Role</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td style="width: 10%" th:text="${user.id}"></td>
-                <td th:text="${user.fullname}"></td>
-                <td th:text="${user.username}"></td>
-                <td style="width: 25%" th:text="${user.role}"></td>
-                <td style="width: 15%" class="text-center">
-                    <a th:href="@{/user/update/{id}(id=${user.id})}">Edit</a>&nbsp;|&nbsp;
-                    <a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <section class="Patients">
+        <h2 class="Patients-title">Patient List</h2>
+        <div class="Patients-tablo-div">
+            <table class="Patients-tablo">
+                <thead class="Patients-tablo-entete">
+                    <tr>
+                        <th class="Patients-tablo-entete-case">Id</th>
+                        <th class="Patients-tablo-entete-case">First Name</th>
+                        <th class="Patients-tablo-entete-case">Last Name</th>
+                        <th class="Patients-tablo-entete-case">Gender</th>
+                        <th class="Patients-tablo-entete-case">Birthday</th>
+                        <th class="Patients-tablo-entete-case">Address</th>
+                        <th class="Patients-tablo-entete-case">Phone</th>
+                        <th class="Patients-tablo-entete-case">Email</th>
+                    </tr>
+                </thead>
+                <tbody class="Patients-tablo-corp">
+                    <tr th:each="patient : ${patients}">
+                        <td class="Patients-tablo-corp-case" th:text="${patient.id}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.firstName}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.lastName}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.gender}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.birthday}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.address}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.phone}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="${patient.email}"></td>
+                        <td class="Patients-tablo-corp-case">
+                            <a class="link-edit" th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp; |&nbsp;
+                            <a class="link-delete" th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>
+                        </td>
+                        <td class="Patients-tablo-corp-case">
+                            <a class="link-notes" href="patient/notes">Consultation note</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a class="Patients-tablo-link AddNew" href="/patient/add">Add New</a>
+    </section>
 
 
 </body>
