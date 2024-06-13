@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>add Patients</title>
-    <!-- <link rel="stylesheet" href="../style.css"> -->
-   <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../style.css">
+   <!-- <link rel="stylesheet" href="../static/style.css"> -->
     <script src="https://kit.fontawesome.com/84b2e4f32b.js" crossorigin="anonymous"></script>
 
 </head>
@@ -13,12 +13,12 @@
 
     <section class="Add-patient">
 
-        <h2 class="Add-patient-title">Add New User</h2>
+        <h2 class="Add-patient-title">Add New Patient</h2>
     
         <div class="container-AddPatient">
             <div class="screen-AddPatient">
                 <div class="screen__content-AddPatient">
-                    <form action="#" th:action="@{/patient/validate}" th:object="${patient}" method="post" class="Add-patient-form login-AddPatient">
+                    <form action="#" th:action="@{/createPatient}" th:object="${patient}" method="post" class="Add-patient-form login-AddPatient">
                         <div class="login__field-AddPatient">
                             <label class="Add-patient-form-label" for="firstName">FirstName</label>
                             <input class="Add-patient-form-input" type="text" th:field="*{firstName}" id="firstName" placeholder="FirstName">
@@ -69,8 +69,8 @@
             
                         <div >
                             <div class="social-login-AddPatient">
-                                <a href="/patients" class="Add-patient-form-cancel">Cancel</a>
-                                <input type="submit" class="button login__submit-AddPatient" value="Add user">
+                                <a href="/patientsPage" class="Add-patient-form-cancel">Cancel</a>
+                                <input type="submit" class="button login__submit-AddPatient" value="Add patient">
                             </div>
                         </div>
                         

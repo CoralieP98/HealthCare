@@ -23,4 +23,5 @@ public class UserServiceImpl implements IUserService{
     public User findByUserName(String email){
         return userFeignClient.getUserByUserName(email).getBody();
     }
+
 }
