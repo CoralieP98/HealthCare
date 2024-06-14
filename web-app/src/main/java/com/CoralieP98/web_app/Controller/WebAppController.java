@@ -71,14 +71,14 @@ public class WebAppController {
     }
 
 //    @PostMapping("/createPatient/valid")
-    public String createPatientOld(@ModelAttribute("patient") Patient patient, BindingResult result, Model model){
-        if (!result.hasErrors()){
-            userFeignClient.createPatient(patient);
-//            model.addAttribute("patient",userFeignClient.getAllPatients());
-            return "redirect:/patient/list";
-        }
-        return "/createPatient";
-    }
+//    public String createPatientOld(@ModelAttribute("patient") Patient patient, BindingResult result, Model model){
+//        if (!result.hasErrors()){
+//            userFeignClient.createPatient(patient);
+////            model.addAttribute("patient",userFeignClient.getAllPatients());
+//            return "redirect:/patient/list";
+//        }
+//        return "/createPatient";
+//    }
 
     @GetMapping("/createPatient")
     public ModelAndView addPatient(Model model){

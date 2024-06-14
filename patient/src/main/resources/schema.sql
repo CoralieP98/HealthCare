@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `last_name` varchar(100) NOT NULL,
   `gender` varchar(20) NOT NULL,
   `birthday` date DEFAULT NULL,
-  `updated_by` varchar(20) DEFAULT NULL,
   `address` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL UNIQUE
