@@ -22,7 +22,7 @@ public interface UserFeignClient {
     public ResponseEntity<List<Patient>> getAllPatients();
 
     @PostMapping (value = "/api/createPatient", consumes = "application/json")
-    public String createPatient(Patient patient);
+    public ResponseEntity<Patient> createPatient(Patient patient);
 
     @PostMapping(value = "/api/findPatientById",consumes = "application/json")
     public ResponseEntity<Patient> findPatientById(@RequestParam Long id);

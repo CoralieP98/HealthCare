@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Patients</title>
-    <link rel="stylesheet" href="../style.css">
-   <!-- <link rel="stylesheet" href="../static/style.css"> -->
+     <link rel="stylesheet" href="../style.css">
+<!--   <link rel="stylesheet" href="../static/style.css">-->
     <script src="https://kit.fontawesome.com/84b2e4f32b.js" crossorigin="anonymous"></script>
 
 
@@ -30,17 +30,19 @@
                 </thead>
                 <tbody class="Patients-tablo-corp">
                     <tr th:each="patient : ${patients}">
-                        <td class="Patients-tablo-corp-case" th:text="${patient.id}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.firstName}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.lastName}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.gender}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.birthday}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.address}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.phone}"></td>
-                        <td class="Patients-tablo-corp-case" th:text="${patient.email}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{id}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{firstName}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{lastName}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{gender}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{birthday}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{address}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{phone}"></td>
+                        <td class="Patients-tablo-corp-case" th:text="*{email}"></td>
                         <td class="Patients-tablo-corp-case">
-                            <a class="link-edit" th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp; |&nbsp;
-                            <a class="link-delete" th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>
+<!--                            <a class="link-edit" th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp; |&nbsp;-->
+<!--                            <a class="link-delete" th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>-->
+                            <a class="link-edit">Edit</a>&nbsp; |&nbsp;
+                            <a class="link-delete">Delete</a>
                         </td>
                         <td class="Patients-tablo-corp-case">
                             <a class="link-notes" href="patient/notes">Consultation note</a>
@@ -49,7 +51,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="Patients-tablo-link AddNew" href="/patientsPage">Add New</a>
+        <a class="Patients-tablo-link AddNew" href="/createPatient">Add New</a>
     </section>
 
 

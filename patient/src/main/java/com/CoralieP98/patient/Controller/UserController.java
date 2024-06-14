@@ -39,9 +39,9 @@ public class UserController {
     }
 
     @PostMapping("createPatient")
-    public String createPatient(Patient patient){
+    public Patient createPatient(@RequestBody Patient patient){
         patientService.createPatient(patient);
-        return "patient created";
+        return patient;
     }
 
     @PostMapping("findPatientById")
