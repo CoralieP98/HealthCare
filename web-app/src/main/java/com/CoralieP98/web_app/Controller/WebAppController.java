@@ -88,7 +88,7 @@ public class WebAppController {
 
     @GetMapping("/patient/list")
     public ModelAndView patientList(Model model){
-        model.addAttribute("patients", userFeignClient.getAllPatients());
+        model.addAttribute("patients", userFeignClient.getAllPatients().getBody());
         return new ModelAndView("patients");
     }
 }
