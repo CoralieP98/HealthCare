@@ -16,10 +16,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -70,16 +67,6 @@ public class WebAppController {
         return "redirect:/patient/list";
     }
 
-//    @PostMapping("/createPatient/valid")
-//    public String createPatientOld(@ModelAttribute("patient") Patient patient, BindingResult result, Model model){
-//        if (!result.hasErrors()){
-//            userFeignClient.createPatient(patient);
-////            model.addAttribute("patient",userFeignClient.getAllPatients());
-//            return "redirect:/patient/list";
-//        }
-//        return "/createPatient";
-//    }
-
     @GetMapping("/createPatient")
     public ModelAndView addPatient(Model model){
         model.addAttribute("patient", new Patient());
@@ -90,5 +77,26 @@ public class WebAppController {
     public ModelAndView patientList(Model model){
         model.addAttribute("patients", userFeignClient.getAllPatients().getBody());
         return new ModelAndView("patients");
+    }
+
+//    @GetMapping("/patient/update")
+//    public  String showUpdateForm(@RequestParam Long id, Model model){
+//        Patient updatePatient = userFeignClient.findPatientById(id).getBody();
+//        model.addAttribute("patient", updatePatient);
+//        return "redirect:/patient/update";
+//    }
+
+    @GetMapping("/patient/update/{id}")
+    public  String showUpdateForm(@PathVariable("id") Long id, Model model){
+        Patient updatePatient = userFeignClient.findPatientById(id).getBody();
+        model.addAttribute("patient", updatePatient);
+        return "redirect:/patient/update";
+    }
+
+    @PutMapping("/patient/update/{id}")
+    public String updatePatient(@PathVariable("id") Long id, Patient patient){
+        patient.setId(id);
+        userFeignClient.updatePatient(id, patient);
+        return "redirect:/patient/list";
     }
 }
