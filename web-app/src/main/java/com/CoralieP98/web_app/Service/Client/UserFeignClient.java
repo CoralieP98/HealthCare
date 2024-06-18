@@ -24,11 +24,11 @@ public interface UserFeignClient {
     @PostMapping (value = "/api/createPatient", consumes = "application/json")
     public ResponseEntity<Patient> createPatient(Patient patient);
 
-    @PostMapping(value = "/api/findPatientById/{id}",consumes = "application/json")
-    public ResponseEntity<Patient> findPatientById(@PathVariable("id") Long id);
+    @PostMapping(value = "/api/findPatientById",consumes = "application/json")
+    public ResponseEntity<Patient> findPatientById(@RequestParam Long id);
 
-    @PutMapping(value = "/api/updatePatient/{id}",consumes = "application/json")
-    public String updatePatient(@PathVariable("id") Long id,Patient patient);
+    @PutMapping(value = "/api/updatePatient",consumes = "application/json")
+    public ResponseEntity<Patient> updatePatient(@RequestParam Long id,Patient patient);
 
     @DeleteMapping(value = "/api/deletePatient",consumes = "application/json")
     public void deletePatient(@PathVariable("id")Patient patient);

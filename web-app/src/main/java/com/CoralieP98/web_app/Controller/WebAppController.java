@@ -79,23 +79,16 @@ public class WebAppController {
         return new ModelAndView("patients");
     }
 
-//    @GetMapping("/patient/update")
-//    public  String showUpdateForm(@RequestParam Long id, Model model){
-//        Patient updatePatient = userFeignClient.findPatientById(id).getBody();
-//        model.addAttribute("patient", updatePatient);
-//        return "redirect:/patient/update";
-//    }
-
     @GetMapping("/patient/update/{id}")
     public  String showUpdateForm(@PathVariable("id") Long id, Model model){
         Patient updatePatient = userFeignClient.findPatientById(id).getBody();
         model.addAttribute("patient", updatePatient);
-        return "redirect:/patient/update";
+        return "updatePatient";
     }
 
-    @PutMapping("/patient/update/{id}")
+    @PostMapping("/patient/update/{id}")
     public String updatePatient(@PathVariable("id") Long id, Patient patient){
-        patient.setId(id);
+//        patient.setId(id);
         userFeignClient.updatePatient(id, patient);
         return "redirect:/patient/list";
     }

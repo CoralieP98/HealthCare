@@ -44,8 +44,8 @@ public class UserController {
         return patient;
     }
 
-    @PostMapping("findPatientById/{id}")
-    public Patient findPatientById(@PathVariable("id") Long id){
+    @PostMapping("findPatientById")
+    public Patient findPatientById(@RequestParam Long id){
         return patientService.findPatientById(id);
     }
 
@@ -59,10 +59,15 @@ public class UserController {
         patientService.deletePatient(patient.getId());
     }
 
-    @PutMapping("updatePatient/{id}")
-    public Patient updatePatient(@PathVariable("id") Long id,Patient patient){
-        patientService.updatePatient(id,patient);
-        return patient;
+//    @PutMapping("updatePatient")
+//    public Patient updatePatient(@RequestParam Long id,Patient patient){
+//        patientService.updatePatient(id,patient);
+//        return patient;
+//    }
+
+    @PutMapping("/updatePatient")
+    public Patient updatePatient(@RequestParam(name = "id") Long id, @RequestBody Patient patient) {
+        return patientService.updatePatient(id,patient);
     }
 
 
