@@ -80,15 +80,14 @@ public class WebAppController {
     }
 
     @GetMapping("/patient/update/{id}")
-    public  String showUpdateForm(@PathVariable("id") Long id, Model model){
+    public  ModelAndView showUpdateForm(@PathVariable("id") Long id, Model model){
         Patient updatePatient = userFeignClient.findPatientById(id).getBody();
         model.addAttribute("patient", updatePatient);
-        return "updatePatient";
+        return new ModelAndView("updatePatient");
     }
 
     @PostMapping("/patient/update/{id}")
     public String updatePatient(@PathVariable("id") Long id, Patient patient){
-//        patient.setId(id);
         userFeignClient.updatePatient(id, patient);
         return "redirect:/patient/list";
     }
