@@ -31,7 +31,7 @@ public interface UserFeignClient {
     public ResponseEntity<Patient> updatePatient(@RequestParam Long id,Patient patient);
 
     @DeleteMapping(value = "/api/deletePatient",consumes = "application/json")
-    public void deletePatient(@PathVariable("id")Patient patient);
+    public void deletePatient(@RequestParam Long id);
 
 
 

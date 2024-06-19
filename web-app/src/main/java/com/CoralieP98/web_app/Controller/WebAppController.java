@@ -91,4 +91,10 @@ public class WebAppController {
         userFeignClient.updatePatient(id, patient);
         return "redirect:/patient/list";
     }
+
+    @GetMapping("/patient/delete/{id}")
+    public String deletePatient(@PathVariable("id")Long id){
+        userFeignClient.deletePatient(id);
+        return "redirect:/patient/list";
+    }
 }
