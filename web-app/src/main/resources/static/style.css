@@ -310,11 +310,15 @@ th{
 
 .link-edit{
 	font-weight: 600;
+	text-decoration:  none;
+
 }
 
 .link-delete{
 	font-weight: 600;
 	color: red;
+	text-decoration:  none;
+
 }
 
 .link-notes{
