@@ -97,6 +97,24 @@ services:
     networks:
       - healthcare-networks
 
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongodb_healthcare
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: courgette123
+    ports:
+      - 27018:27017
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    networks:
+      - healthcare-networks
+
+
+
 
   patient:
     image: coralieperez/patient
@@ -130,6 +148,8 @@ services:
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
       SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/healthcare"
+
+
 
 
 networks:
