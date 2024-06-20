@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+     <!-- <link rel="stylesheet" href="/style.css"> -->
+  <link rel="stylesheet" href="../static/style.css">
+    <script src="https://kit.fontawesome.com/84b2e4f32b.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body class="Vew-Patients">
+    <header th:replace="~{fragments/navBar}"></header>
+
+    <section class="Patients">
+        <h2 class="Patients-title">Consultation notes</h2>
+        <h3 th:text="${patient.lastName}">name</h3>
+        <div class="Patients-tablo-div">
+            <table class="Patients-tablo">
+                <thead class="Patients-tablo-entete">
+                    <tr>
+                        <th class="Patients-tablo-entete-case">Note</th>
+                        <th class="Patients-tablo-entete-case">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="Patients-tablo-corp">
+                    <tr th:each="note : ${notes}">
+                        <td class="Patients-tablo-corp-case" th:href="@{/note/{id}(id=${note.id})}">Go to your notes</td>
+                        <td class="Patients-tablo-corp-case" th:text="*{note.noteDate}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a class="Patients-tablo-link AddNew" href="/createPatient">Add New</a>
+    </section>
+
+
+</body>
+</html>
