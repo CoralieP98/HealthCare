@@ -22,4 +22,16 @@ public class NoteService {
     public List<Note> findAllByPatientId(Long patientId){
         return noteRepository.findNotesByPatientId(patientId);
     }
+
+    public Note findNoteById(String id){
+        return noteRepository.findNoteById(id).get();
+    }
+
+    public Note updateNote(String id, Note note) {
+        return noteRepository.save(note);
+    }
+
+    public void deleteNote(String id) {
+        noteRepository.deleteById(id);
+    }
 }
