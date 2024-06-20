@@ -13,4 +13,36 @@ public class Note {
     private String note;
     private LocalDate noteDate;
     private Long patientId;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public LocalDate getNoteDate() {
+        return noteDate;
+    }
+
+    public void setNoteDate(LocalDate noteDate) {
+        this.noteDate = noteDate;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
 }
