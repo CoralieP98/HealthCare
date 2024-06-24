@@ -14,14 +14,20 @@
     <section class="Add-patient">
 
         <h2 class="Add-patient-title">Add Consultation note</h2>
+
+        <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">
+            <h3 th:text="*{patient.lastName}">Dupont</h3>
+        </div>
     
-        <div class="container-AddPatient">
-            <div class="screen-AddPatient">
+        <div class="container-AddPa
+        tient">
+            <div class="screen-AddNote">
                 <div class="screen__content-AddPatient">
                     <form action="#" th:action="@{/createNote}" th:object="${note}" method="POST" class="Add-patient-form login-AddPatient">
                         <div class="login__field-AddPatient">
-                            <label class="Add-patient-form-label" for="note">Consultation note</label>
-                            <input class="Add-patient-form-input" type="area" th:field="*{note}" id="note" placeholder="Consultation note">
+                            <label class="Add-patient-form-label" for="note">Note</label>
+                            <!-- <input class="Add-patient-form-input" type="text" th:field="*{note}" id="note" placeholder="Consultation note"> -->
+                            <textarea class="Add-note-form-textarea" type="text" th:field="*{note}" id="note" placeholder="Consultation note"></textarea>
                             <p class="text-danger" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></p>
                         </div>
                         <div class="login__field-AddPatient">
@@ -34,7 +40,7 @@
             
                         <div >
                             <div class="social-login-AddPatient">
-                                <a href="/note/list" class="Add-patient-form-cancel">Cancel</a>
+                                <a href="/note/list" class="Add-note-form-cancel">Cancel</a>
                                 <input type="submit" class="button login__submit-AddPatient" value="Add note">
                             </div>
                         </div>

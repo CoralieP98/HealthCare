@@ -338,11 +338,6 @@ th{
 
 /* ### Add patient Form ###  */
 
-.Vew-Add-patient{
-	/* background: linear-gradient(270deg, #5D54A4, #6A679E); */
-
-}
-
 .Add-patient-title{
 	/* color: white; */
 	padding: 1em;
@@ -454,4 +449,36 @@ th{
 .login__submit-AddPatient:hover {
 	border-color: #6A679E;
 	outline: none;
+}
+
+/* ### Add Note Form ### */
+
+.screen-AddNote{
+	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
+	position: relative;	
+	height: 350px;
+	width: 460px;	
+	box-shadow: 0px 0px 24px #5c569675;
+}
+
+.Add-note-form-textarea{
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 30px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+	border: 2px solid #5c569675;
+	border-radius: 1em;
+	background-color: #e2e2f1;
+	resize: none;
+}
+
+.Add-note-form-cancel{
+	color: #5c5696cb;
+	text-decoration: none;
+
+
 }
