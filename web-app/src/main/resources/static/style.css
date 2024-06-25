@@ -480,3 +480,21 @@ th{
 	color: #5c5696cb;
 	text-decoration: none;
 }
+
+.Note{
+	text-align: center;
+	margin: 1em;
+}
+
+
+.Note-text{
+	border: 2px solid #5D54A4;
+	border-radius: 1em;
+	padding: 1em;
+
+}
+
+.Note-cancel{
+	text-decoration: none;
+	color: #39367c;
+}

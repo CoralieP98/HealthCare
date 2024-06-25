@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Note</title>
-     <!-- <link rel="stylesheet" href="/style.css"> -->
-  <link rel="stylesheet" href="../static/style.css">
+     <link rel="stylesheet" href="/style.css">
+  <!-- <link rel="stylesheet" href="../static/style.css"> -->
     <script src="https://kit.fontawesome.com/84b2e4f32b.js" crossorigin="anonymous"></script>
 
 
@@ -18,11 +18,14 @@
             <h3 th:text="*{patient.lastName}">Dupont</h3>
         </div>
 
-        <div th:action="@{/getNoteById/{id}(id=${note.id})}" th:object="${note}" method="GET"></div>
+        <div th:action="@{/getNoteById/{id}(id=${note.id})}" th:object="${note}" method="GET">
+            <p th:text="*{note.noteDate}"></p>
+            <p th:text="*{note.note}" class="Note-text">Lorem ipsum, dolor sit amet consectetur </p>
+        </div>
 
 
         
-        <a class="Note" href="/patient/notes">Back to list</a>
+        <a class="Note-cancel" href="/patient/notes">Back to list</a>
     </section>
 
 
