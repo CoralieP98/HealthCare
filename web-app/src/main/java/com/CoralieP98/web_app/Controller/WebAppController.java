@@ -8,7 +8,7 @@ import com.CoralieP98.web_app.Service.CustomUserDetailsService;
 import com.CoralieP98.web_app.Service.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.cfg.Environment;
+//import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
