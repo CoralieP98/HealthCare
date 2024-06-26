@@ -18,7 +18,7 @@
         <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">
             <h3 th:text="*{patient.lastName}"></h3>
         </div>
-    
+
         <div class="container-AddPatient">
             <div class="screen-AddNote">
                 <div class="screen__content-AddPatient">
@@ -31,30 +31,30 @@
                         </div>
                         <div class="login__field-AddPatient">
                             <label class="Add-patient-form-label" for="noteDate">Date</label>
-                            
+
                                 <input class="Add-patient-form-input" type="text" th:field="*{noteDate}" id="noteDate" placeholder="Date">
                                 <p class="text-danger" th:if="${#fields.hasErrors('noteDate')}" th:errors="*{noteDate}"></p>
-                            
+
                         </div>
-            
+
                         <div >
                             <div class="social-login-AddPatient">
                                 <a href="/patient/notes" class="Add-note-form-cancel">Cancel</a>
                                 <input type="submit" class="button login__submit-AddPatient" value="Add note">
                             </div>
                         </div>
-                        
+
                     </form>
-                </div> 
+                </div>
                 <div class="screen__background">
                     <span class="screen__background__shape screen__background__shape4"></span>
                     <span class="screen__background__shape screen__background__shape3"></span>
                     <span class="screen__background__shape screen__background__shape2"></span>
                     <span class="screen__background__shape screen__background__shape1"></span>
-                </div>   
-            </div>    
+                </div>
+            </div>
         </div>
 
     </section>
-    
+
 </body>

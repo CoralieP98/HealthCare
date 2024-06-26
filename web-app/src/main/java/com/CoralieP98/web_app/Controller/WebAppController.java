@@ -1,7 +1,9 @@
 package com.CoralieP98.web_app.Controller;
 
+import com.CoralieP98.web_app.Model.Note;
 import com.CoralieP98.web_app.Model.Patient;
 import com.CoralieP98.web_app.Model.User;
+import com.CoralieP98.web_app.Service.Client.NoteFeignClient;
 import com.CoralieP98.web_app.Service.Client.UserFeignClient;
 
 import com.CoralieP98.web_app.Service.CustomUserDetailsService;
@@ -30,6 +32,8 @@ public class WebAppController {
     private final UserServiceImpl userService;
 
     private final CustomUserDetailsService userDetailsService;
+
+    private final NoteFeignClient noteFeignClient;
 
 
     @GetMapping("/")
@@ -60,7 +64,7 @@ public class WebAppController {
         userDetailsService.loadUserByUsername(email);
         return "redirect:/home";
     }
-
+//////////////////////////////////////////////////////////////
     @PostMapping("/createPatient/valid")
     public String createPatient(@ModelAttribute("patient") Patient patient){
         userFeignClient.createPatient(patient);
@@ -97,4 +101,19 @@ public class WebAppController {
         userFeignClient.deletePatient(id);
         return "redirect:/patient/list";
     }
+
+//////////////////////////////////////////////////////////////
+
+    @GetMapping("note/createNote")
+    public ModelAndView createNote(Model model){
+        model.addAttribute("note", new Note());
+        return new ModelAndView("addNote");
+    }
+
+    @PostMapping("note/createNote")
+    public String createNote(@ModelAttribute("note") Note note){
+        noteFeignClient.createNote(note);
+        return "redirect:/patient/notes";
+    }
+
 }

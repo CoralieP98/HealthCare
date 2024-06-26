@@ -1,6 +1,6 @@
 package com.CoralieP98.web_app.Model;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 

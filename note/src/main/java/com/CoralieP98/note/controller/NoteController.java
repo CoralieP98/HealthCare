@@ -3,11 +3,13 @@ package com.CoralieP98.note.controller;
 import com.CoralieP98.note.model.Note;
 import com.CoralieP98.note.service.NoteService;
 import org.aspectj.weaver.ast.Not;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/note", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class NoteController {
 
     private final NoteService noteService;
@@ -21,12 +23,12 @@ public class NoteController {
         return noteService.createNote(note);
     }
 
-    @PostMapping("findNotesByPatientId")
+    @GetMapping("findNotesByPatientId")
     public List<Note> findNotesByPatientId(@RequestParam Long patientId){
         return noteService.findAllByPatientId(patientId);
     }
 
-    @PostMapping("findNoteById")
+    @GetMapping("findNoteById")
     public Note findNoteById(@RequestParam String id){
         return noteService.findNoteById(id);
     }

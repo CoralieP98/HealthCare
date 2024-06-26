@@ -99,23 +99,15 @@ services:
 
   mongo:
     image: mongo
-    restart: always
     container_name: mongodb_healthcare
     environment:
+      MONGO_INITDB_DATABASE: notes
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: courgette123
     ports:
       - 27018:27017
     healthcheck:
-      test:
-        [
-          "CMD",
-          "mongo",
-          "--quiet",
-          "127.0.0.1/test",
-          "--eval",
-          "'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'",
-        ]
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017 --quiet
       interval: 10s
       timeout: 10s
       retries: 5
