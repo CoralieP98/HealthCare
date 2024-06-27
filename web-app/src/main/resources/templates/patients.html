@@ -43,7 +43,7 @@
                             <a class="link-delete" th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>
                         </td>
                         <td class="Patients-tablo-corp-case">
-                            <a class="link-notes" href="/patient/notes">Consultation note</a>
+                            <a class="link-notes" th:href="@{/note/list/{patientId}(patientId=${patient.id})}">Consultation note</a>
                         </td>
                     </tr>
                 </tbody>

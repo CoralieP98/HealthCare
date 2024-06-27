@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>add Consultation note</title>
+    <title>update Consultation note</title>
     <link rel="stylesheet" href="/style.css">
    <!-- <link rel="stylesheet" href="../static/style.css"> -->
     <script src="https://kit.fontawesome.com/84b2e4f32b.js" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
 
     <section class="Add-patient">
 
-        <h2 class="Add-patient-title">Add Consultation note</h2>
+        <h2 class="Add-patient-title">Update Consultation note</h2>
 
 <!--        <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">-->
 <!--            <h3 th:text="*{patient.lastName}"></h3>-->
@@ -22,7 +22,7 @@
         <div class="container-AddPatient">
             <div class="screen-AddNote">
                 <div class="screen__content-AddPatient">
-                    <form action="#" th:action="@{/note/createNote}" th:object="${note}" method="POST" class="Add-patient-form login-AddPatient">
+                    <form action="#" th:action="@{/note/update/{id}(id=${note.id})}" th:object="${note}" method="POST" class="Add-patient-form login-AddPatient">
                         <div class="login__field-AddPatient">
                             <label class="Add-patient-form-label" for="note">Note</label>
                             <!-- <input class="Add-patient-form-input" type="text" th:field="*{note}" id="note" placeholder="Consultation note"> -->
@@ -39,8 +39,9 @@
 
                         <div >
                             <div class="social-login-AddPatient">
+                                <input type="hidden" th:field="*{id}">
                                 <a th:href="@{/note/list/{patientId}(patientId=${patient.id})}" class="Add-note-form-cancel">Cancel</a>
-                                <input type="submit" class="button login__submit-AddPatient" value="Add note">
+                                <input type="submit" class="button login__submit-AddPatient" value="Update note">
                             </div>
                         </div>
 

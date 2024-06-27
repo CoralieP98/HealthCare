@@ -14,18 +14,18 @@
 
     <section class="Note">
 
-        <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">
-            <h3 th:text="*{patient.lastName}">Dupont</h3>
+<!--        <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">-->
+<!--            <h3 th:text="*{patient.lastName}">Dupont</h3>-->
+<!--        </div>-->
+
+        <div th:action="@{/note/findNoteById/{id}(id=${note.id})}" th:object="${note}" method="GET">
+            <p th:text="*{noteDate}"></p>
+            <p th:text="*{note}" class="Note-text">Lorem ipsum, dolor sit amet consectetur </p>
         </div>
 
-        <div th:action="@{/getNoteById/{id}(id=${note.id})}" th:object="${note}" method="GET">
-            <p th:text="*{note.noteDate}"></p>
-            <p th:text="*{note.note}" class="Note-text">Lorem ipsum, dolor sit amet consectetur </p>
-        </div>
 
 
-
-        <a class="Note-cancel" href="/patient/notes">Back to list</a>
+        <a class="Note-cancel" th:href="@{/note/list/{patientId}(patientId=${patient.id})}">Back to list</a>
     </section>
 
 

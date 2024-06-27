@@ -104,16 +104,55 @@ public class WebAppController {
 
 //////////////////////////////////////////////////////////////
 
-    @GetMapping("note/createNote")
+    @GetMapping("/note/createNote")
     public ModelAndView createNote(Model model){
         model.addAttribute("note", new Note());
         return new ModelAndView("addNote");
     }
 
-    @PostMapping("note/createNote")
+    @PostMapping("/note/createNote")
     public String createNote(@ModelAttribute("note") Note note){
         noteFeignClient.createNote(note);
         return "redirect:/patient/notes";
     }
+
+    @GetMapping("/note/list/{patientId}")
+    public ModelAndView getAllNotesByPatientId(@PathVariable("patientId") Long patientId,Model model){
+        model.addAttribute("notes", noteFeignClient.findNotesByPatientId(patientId).getBody());
+        return new ModelAndView("listNote");
+    }
+
+    @GetMapping("/note/list")
+    public String listNote(){
+
+        return "redirect:/note/list";
+    }
+
+    @GetMapping("/note/findNoteById/{id}")
+    public ModelAndView findNoteById(@PathVariable("id") String id,Model model){
+        model.addAttribute("note", noteFeignClient.findNoteById(id).getBody());
+        return new ModelAndView("note");
+    }
+
+    @GetMapping("/note/update/{id}")
+    public  ModelAndView showNoteUpdateForm(@PathVariable("id") String id, Model model){
+        Note updateNote = noteFeignClient.findNoteById(id).getBody();
+        model.addAttribute("note", updateNote);
+        return new ModelAndView("updateNote");
+    }
+
+    @PostMapping("/note/update/{id}")
+    public String updateNote(@PathVariable("id") String id, Note note){
+        noteFeignClient.updateNote(id, note);
+        return "redirect:/note/list";
+    }
+
+    @GetMapping("/note/delete/{id}")
+    public String deleteNote(@PathVariable("id")String id){
+        noteFeignClient.deleteNote(id);
+        return "redirect:/note/list";
+    }
+
+
 
 }
