@@ -15,9 +15,9 @@
 
         <h2 class="Add-patient-title">Update Consultation note</h2>
 
-<!--        <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">-->
-<!--            <h3 th:text="*{patient.lastName}"></h3>-->
-<!--        </div>-->
+        <p class="note-namePatient" th:text="${patient.lastName} + ' ' + ${patient.firstName}"></p>
+
+
 
         <div class="container-AddPatient">
             <div class="screen-AddNote">

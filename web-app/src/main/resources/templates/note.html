@@ -14,9 +14,9 @@
 
     <section class="Note">
 
-<!--        <div th:action="@{/getPatientName}" th:object="${patient}" method="GET">-->
-<!--            <h3 th:text="*{patient.lastName}">Dupont</h3>-->
-<!--        </div>-->
+        <p class="note-namePatient" th:text="${patient.lastName} + ' ' + ${patient.firstName}"></p>
+
+
 
         <div th:action="@{/note/findNoteById/{id}(id=${note.id})}" th:object="${note}" method="GET">
             <p th:text="*{noteDate}"></p>

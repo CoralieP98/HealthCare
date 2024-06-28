@@ -44,7 +44,7 @@ public class UserController {
         return patient;
     }
 
-    @PostMapping("findPatientById")
+    @GetMapping("findPatientById")
     public Patient findPatientById(@RequestParam Long id){
         return patientService.findPatientById(id);
     }
@@ -58,6 +58,8 @@ public class UserController {
     public Patient updatePatient(@RequestParam(name = "id") Long id, @RequestBody Patient patient) {
         return patientService.updatePatient(id,patient);
     }
+
+
 
 
 }

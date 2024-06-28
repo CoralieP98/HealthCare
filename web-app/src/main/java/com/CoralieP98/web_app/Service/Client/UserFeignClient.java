@@ -24,7 +24,7 @@ public interface UserFeignClient {
     @PostMapping (value = "/api/createPatient", consumes = "application/json")
     public ResponseEntity<Patient> createPatient(Patient patient);
 
-    @PostMapping(value = "/api/findPatientById",consumes = "application/json")
+    @GetMapping(value = "/api/findPatientById",consumes = "application/json")
     public ResponseEntity<Patient> findPatientById(@RequestParam Long id);
 
     @PutMapping(value = "/api/updatePatient",consumes = "application/json")
