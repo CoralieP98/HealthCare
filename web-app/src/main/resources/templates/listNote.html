@@ -31,18 +31,18 @@
                 </thead>
                 <tbody class="Patients-tablo-corp">
                     <tr th:each="note : ${notes}">
-                        <td class="Patients-tablo-corp-case" ><a th:href="@{/note/findNoteById/{id}(id=${note.id})}"
+                        <td class="Patients-tablo-corp-case" ><a th:href="@{/note/findNoteById/{id}/{patientId}(id=${note.id},patientId=${patientId})}"
                                 >note</a></td>
                         <td class="Patients-tablo-corp-case" th:text="*{note.noteDate}"></td>
                         <td class="Patients-tablo-corp-case">
-                            <a class="link-edit" th:href="@{/note/update/{id}(id=${note.id})}">Edit</a>&nbsp; |&nbsp;
-                            <a class="link-delete" th:href="@{/note/delete/{id}(id=${note.id})}">Delete</a>
+                            <a class="link-edit" th:href="@{/note/update/{id}/{patientId}(id=${note.id}, patientId=${patientId})}">Edit</a>&nbsp; |&nbsp;
+                            <a class="link-delete" th:href="@{/note/delete/{id}/{patientId}(id=${note.id}, patientId=${patientId})}">Delete</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <a class="Patients-tablo-link AddNew" href="/note/createNote">Add New</a>
+        <a class="Patients-tablo-link AddNew" th:href="@{/note/createNote/{patientId}(patientId=${patientId})}">Add New</a>
     </section>
 
 

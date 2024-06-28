@@ -22,7 +22,8 @@
         <div class="container-AddPatient">
             <div class="screen-AddNote">
                 <div class="screen__content-AddPatient">
-                    <form action="#" th:action="@{/note/createNote}" th:object="${note}" method="POST" class="Add-patient-form login-AddPatient">
+                    <form action="#" th:action="@{/note/createNote/{patientId}(patientId=${patientId})}" th:object="${note}" method="POST" class="Add-patient-form login-AddPatient">
+
                         <div class="login__field-AddPatient">
                             <label class="Add-patient-form-label" for="note">Note</label>
                             <!-- <input class="Add-patient-form-input" type="text" th:field="*{note}" id="note" placeholder="Consultation note"> -->
@@ -39,7 +40,7 @@
 
                         <div >
                             <div class="social-login-AddPatient">
-                                <a th:href="@{/note/list/{patientId}(patientId=${patient.id})}" class="Add-note-form-cancel">Cancel</a>
+                                <a th:href="@{/note/list/{patientId}(patientId=${patientId})}" class="Add-note-form-cancel">Cancel</a>
                                 <input type="submit" class="button login__submit-AddPatient" value="Add note">
                             </div>
                         </div>
