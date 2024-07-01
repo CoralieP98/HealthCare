@@ -114,6 +114,7 @@ public class WebAppController {
 
     @PostMapping("/note/createNote/{patientId}")
     public ModelAndView createNote(@PathVariable("patientId") Long patientId,Note note,Model model){
+        model.addAttribute("patient", userFeignClient.findPatientById(patientId).getBody());
         note.setPatientId(patientId);
         noteFeignClient.createNote(note);
         model.addAttribute("notes", noteFeignClient.findNotesByPatientId(patientId).getBody());
@@ -149,6 +150,7 @@ public class WebAppController {
     @PostMapping("/note/update/{id}/{patientId}")
     public ModelAndView updateNote(@PathVariable("id") String id,@PathVariable("patientId") Long patientId, Note note, Model model){
         note.setPatientId(patientId);
+        model.addAttribute("patient", userFeignClient.findPatientById(patientId).getBody());
         noteFeignClient.updateNote(id, note);
         model.addAttribute("notes", noteFeignClient.findNotesByPatientId(patientId).getBody());
         return new ModelAndView("listNote","patientId",patientId);
@@ -157,6 +159,7 @@ public class WebAppController {
 
     @GetMapping("/note/delete/{id}/{patientId}")
     public ModelAndView deleteNote(@PathVariable("id")String id,@PathVariable("patientId") Long patientId, Model model){
+        model.addAttribute("patient", userFeignClient.findPatientById(patientId).getBody());
         noteFeignClient.deleteNote(id);
         model.addAttribute("notes", noteFeignClient.findNotesByPatientId(patientId).getBody());
         return new ModelAndView("listNote","patientId",patientId);
