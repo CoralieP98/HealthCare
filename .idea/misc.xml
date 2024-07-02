@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/web-app/pom.xml" />
         <option value="$PROJECT_DIR$/patient/pom.xml" />
         <option value="$PROJECT_DIR$/note/pom.xml" />
+        <option value="$PROJECT_DIR$/diabeteScoring/pom.xml" />
       </list>
     </option>
   </component>

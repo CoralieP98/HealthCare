@@ -10,6 +10,7 @@
         <module name="eurekaserver" />
         <module name="web-app" />
         <module name="note" />
+        <module name="diabeteScoring" />
         <module name="configserver" />
         <module name="patient" />
       </profile>
@@ -21,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="configserver" options="-parameters" />
+      <module name="diabeteScoring" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="note" options="-parameters" />
