@@ -28,22 +28,6 @@ services:
     mem_limit: 700m
     depends_on:
       - eurekaserver
-    healthcheck:
-      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
-    #    extends:
-    #      file: common-config.yml
-    #      service: microservice-base-config
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 40s
-        max_attempts: 3
-        window: 120s
-
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
@@ -60,16 +44,14 @@ services:
       - healthcare-networks
     mem_limit: 700m
     depends_on:
-      - configserver
+      configserver:
+        condition: service_healthy
     healthcheck:
       test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
       timeout: 5s
       retries: 10
       start_period: 10s
-#    extends:
-#      file: common-config.yml
-#      service: microservice-base-config
     deploy:
       restart_policy:
         condition: on-failure
@@ -92,6 +74,7 @@ services:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 20s
       retries: 10
+      start_period: 10s
     ports:
       - 3308:3306
     networks:
@@ -111,7 +94,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
-      start_period: 40s
+      start_period: 10s
     networks:
       - healthcare-networks
 
@@ -129,28 +112,31 @@ services:
     depends_on:
       - mysql
       - eurekaserver
-    healthcheck:
-      test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
-    #    extends:
-    #      file: common-config.yml
-    #      service: microservice-base-config
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 60s
-        max_attempts: 3
-        window: 120s
-
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
       SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/healthcare"
 
+
+  note:
+    image: coralieperez/note
+    container_name: note-ms
+    ports:
+      - "9010:9010"
+    networks:
+      - healthcare-networks
+    mem_limit: 700m
+    depends_on:
+      eurekaserver:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka
+      SPRING_APPLICATION_NAME: "note"
+      SPRING_DATA_MONGODB_PORT: "27017"
+      SPRING_DATA_MONGODB_HOST: "mongo"
 
 
 
